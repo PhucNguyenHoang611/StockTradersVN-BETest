@@ -19,8 +19,8 @@ export class StocksService {
     private readonly httpService: HttpService
   ) {}
 
-  // Execute this function every 30 seconds
-  @Cron(CronExpression.EVERY_30_SECONDS)
+  // Execute this function every minute
+  @Cron(CronExpression.EVERY_MINUTE)
   async fetchStockData() {
     const apiUrl = "https://stocktraders.vn/service/data/getTotalTradeReal";
     try {
@@ -61,10 +61,11 @@ export class StocksService {
         this.websocketClient.emit("stock_data", newDocuments);
       }
 
-      console.log({
+      return {
         success: true,
-        message: "Latest stock data fetched successfully"
-      });
+        message: "Latest stock data fetched successfully",
+        results: stocks
+      };
     } catch (error) {
       console.error("Error fetching stock data:", error.message);
       throw error;

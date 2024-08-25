@@ -33,11 +33,13 @@ export class StocksController implements OnModuleInit {
     description: "Stock data has been fetched and updated"
   })
   async fetchStockData() {
-    await this.stocksService.fetchStockData();
+    return await this.stocksService.fetchStockData();
   }
 
   @Get()
-  @ApiOperation({ summary: "Get all stock records in database" })
+  @ApiOperation({
+    summary: "Get all stock records in database with pagination"
+  })
   @ApiResponse({ status: 200, description: "Return all stock records" })
   async findAll(
     @Query() query: string,
