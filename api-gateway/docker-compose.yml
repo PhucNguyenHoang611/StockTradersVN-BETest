@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  api-gateway:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - stock-data-service
+      - websocket-service
+
+  stock-data-service:
+    image: stock-data-service
+    build:
+      context: ../stock-data-service
+
+  websocket-service:
+    image: websocket-service
+    build:
+      context: ../websocket-service
