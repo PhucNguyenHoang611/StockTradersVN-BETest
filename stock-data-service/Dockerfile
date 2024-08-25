@@ -1,6 +1,6 @@
 FROM node:18-alpine
 
-WORKDIR /usr/src/app/stock-data-service
+WORKDIR /app/stock-data-service
 
 COPY package*.json ./
 

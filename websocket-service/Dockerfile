@@ -1,6 +1,6 @@
 FROM node:18-alpine
 
-WORKDIR /usr/src/app/websocket-service
+WORKDIR /app/websocket-service
 
 COPY package*.json ./
 
