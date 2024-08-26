@@ -5,6 +5,8 @@ services:
       context: ./api-gateway
     environment:
       - PORT=8080
+      - STOCK_SERVICE_URL=http://stock-data-service:8081
+      - WEBSOCKET_SERVICE_URL=http://websocket-service:8082
     ports:
       - "8080:8080"
     networks:
