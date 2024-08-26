@@ -7,7 +7,7 @@ import { createKafkaConfig } from "./config/kafka.config";
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
-  const port = configService.get("PORT");
+  const port = configService.get("PORT") || 8082;
 
   // Connect to Kafka Server
   app.connectMicroservice<MicroserviceOptions>(

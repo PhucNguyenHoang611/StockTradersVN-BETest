@@ -6,8 +6,9 @@ export class ProxyMiddleware implements NestMiddleware {
   use(req: any, res: any, next: () => void) {
     // Handle requests to the stock-data-service and websocket-service
     if (
-      req.url.startsWith("/ws-stock") ||
-      req.url.startsWith("/socket.io/?EIO=4&transport=websocket")
+      !req.url.startsWith("/health-check") &&
+      (req.url.startsWith("/ws-stock") ||
+        req.url.startsWith("/socket.io/?EIO=4&transport=websocket"))
     ) {
       createProxyMiddleware({
         target: "http://websocket-service:8082",
