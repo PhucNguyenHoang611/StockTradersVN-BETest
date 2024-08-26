@@ -4,11 +4,11 @@ import {
   Post,
   Body,
   Param,
-  Put,
   Delete,
   Query,
   OnModuleInit,
-  Inject
+  Inject,
+  Patch
 } from "@nestjs/common";
 import { StocksService } from "./stocks.service";
 import { CreateStockDto } from "./dto/create-stock.dto";
@@ -67,7 +67,7 @@ export class StocksController implements OnModuleInit {
     return this.stocksService.create(createStockDto);
   }
 
-  @Put(":_id")
+  @Patch(":_id")
   @ApiOperation({ summary: "Update a stock record by ID" })
   @ApiResponse({ status: 200, description: "The updated stock record" })
   @ApiResponse({ status: 404, description: "Stock not found" })

@@ -14,13 +14,17 @@ export class ProxyMiddleware implements NestMiddleware {
         req.url.startsWith("/socket.io/?EIO=4&transport=websocket"))
     ) {
       createProxyMiddleware({
-        target: this.configService.get("WEBSOCKET_SERVICE_URL"),
+        target:
+          this.configService.get("WEBSOCKET_SERVICE_URL") ||
+          "http://websocket-service:8082",
         ws: true,
         changeOrigin: true
       })(req, res, next);
     } else {
       createProxyMiddleware({
-        target: this.configService.get("STOCK_DATA_SERVICE_URL"),
+        target:
+          this.configService.get("STOCK_DATA_SERVICE_URL") ||
+          "http://stock-data-service:8081",
         changeOrigin: true
       })(req, res, next);
     }
