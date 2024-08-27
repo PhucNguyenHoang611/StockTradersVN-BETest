@@ -57,10 +57,10 @@ docker compose up -d
 
 ### Truy cập thông qua link Azure đã được hosting:
 
-- Bạn cũng có thể truy cập thông qua địa chỉ Azure sau (Swagger UI đã được test đầy đủ):
+- Bạn cũng có thể truy cập thông qua địa chỉ Azure sau (Đường dẫn đến Swagger UI đã được test đầy đủ, còn đường dẫn đến server websocket có thể hoạt động không ổn định):
 
 **https://phucnhstocktraders.azurewebsites.net/api**
 
 **https://phucnhstocktraders.azurewebsites.net/ws-stock**
 
-**Hệ thống trên Azure có thể gặp một số vấn đề về tốc độ mạng hoặc điều hướng proxy do được host bằng gói miễn phí. Nếu gặp phải lỗi proxy ở đường dẫn /api, vui lòng nhấn F5 để tải lại trang**
+**Hệ thống trên Azure có thể gặp một số vấn đề về tốc độ mạng, điều hướng proxy, không ổn định như khi triển khai local do được host bằng gói miễn phí. Nếu gặp phải lỗi proxy ở đường dẫn https://phucnhstocktraders.azurewebsites.net/api, vui lòng nhấn F5 để tải lại trang**
