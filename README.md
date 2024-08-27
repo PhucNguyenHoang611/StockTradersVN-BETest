@@ -63,4 +63,4 @@ docker compose up -d
 
 **https://phucnhstocktraders.azurewebsites.net/ws-stock**
 
-# **Server websocket trên Azure có thể gặp một số vấn đề**
+**Hệ thống trên Azure có thể gặp một số vấn đề về tốc độ mạng hoặc điều hướng proxy do được host bằng gói miễn phí**
