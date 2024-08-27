@@ -64,18 +64,18 @@ export class StocksController implements OnModuleInit {
   })
   @ApiResponse({ status: 400, description: "Bad Request" })
   async create(@Body() createStockDto: CreateStockDto) {
-    return await this.stocksService.create(createStockDto);
+    return await this.stocksService.createStock(createStockDto);
   }
 
   @Patch(":_id")
-  @ApiOperation({ summary: "Update a stock record by ID" })
+  @ApiOperation({ summary: "Update a stock record by stock ID" })
   @ApiResponse({ status: 200, description: "The updated stock record" })
   @ApiResponse({ status: 404, description: "Stock not found" })
   async update(
     @Param("_id") _id: string,
     @Body() updateStockDto: UpdateStockDto
   ) {
-    return await this.stocksService.update(_id, updateStockDto);
+    return await this.stocksService.updateStock(_id, updateStockDto);
   }
 
   @Delete(":_id")
@@ -85,8 +85,8 @@ export class StocksController implements OnModuleInit {
     description: "The stock record has been deleted"
   })
   @ApiResponse({ status: 404, description: "Stock not found" })
-  async delete(@Param("_id") _id: string): Promise<void> {
-    return await this.stocksService.delete(_id);
+  async delete(@Param("_id") _id: string) {
+    return await this.stocksService.deleteStock(_id);
   }
 
   // Kafka Client connect

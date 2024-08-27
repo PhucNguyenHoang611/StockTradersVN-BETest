@@ -5,25 +5,25 @@ export type StockDocument = HydratedDocument<Stock>;
 
 @Schema({ timestamps: true })
 export class Stock {
-  @Prop({ required: true })
+  @Prop()
   close: number;
 
   @Prop({ default: Date.now })
   date: Date;
 
-  @Prop({ required: true })
+  @Prop()
   high: number;
 
-  @Prop({ required: true })
+  @Prop()
   low: number;
 
-  @Prop({ required: true })
+  @Prop()
   open: number;
 
-  @Prop({ required: true })
+  @Prop()
   ticker: string;
 
-  @Prop({ required: true })
+  @Prop()
   vol: number;
 }
 

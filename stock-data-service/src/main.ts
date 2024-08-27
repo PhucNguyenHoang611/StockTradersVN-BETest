@@ -22,15 +22,17 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
-      forbidNonWhitelisted: true
+      forbidNonWhitelisted: true,
+      transform: true
     })
   );
 
   app.enableCors({
     origin: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
     preflightContinue: false,
-    credentials: true
+    credentials: true,
+    optionsSuccessStatus: 204
   });
 
   await app.listen(port);

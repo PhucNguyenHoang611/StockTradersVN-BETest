@@ -1,16 +1,16 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsDate } from "class-validator";
+import { IsString, IsDateString } from "class-validator";
 
 export class GetStockHistoryDto {
   @ApiProperty({ description: "Stock ticker" })
   @IsString()
-  readonly ticker?: string;
+  ticker: string;
 
   @ApiProperty({ description: "Start date of the stock" })
-  @IsDate()
-  readonly startDate?: Date;
+  @IsDateString()
+  startDate: Date;
 
   @ApiProperty({ description: "End date of the stock" })
-  @IsDate()
-  readonly endDate?: Date;
+  @IsDateString()
+  endDate: Date;
 }

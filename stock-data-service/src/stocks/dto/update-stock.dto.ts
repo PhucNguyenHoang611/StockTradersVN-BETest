@@ -1,43 +1,43 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsNumber, IsOptional } from "class-validator";
+import { IsString, IsNumber, IsOptional, IsDateString } from "class-validator";
 
 export class UpdateStockDto {
   @ApiProperty({ description: "Closing price of the stock" })
   @IsOptional()
   @IsNumber()
-  readonly close?: number;
+  close: number;
 
   @ApiProperty({ description: "Date of the stock data" })
   @IsOptional()
-  @IsString()
-  readonly date?: Date;
+  @IsDateString()
+  date: Date;
 
   @ApiProperty({
     description: "Highest price of the stock in the trading session"
   })
   @IsOptional()
   @IsNumber()
-  readonly high?: number;
+  high: number;
 
   @ApiProperty({
     description: "Lowest price of the stock in the trading session"
   })
   @IsOptional()
   @IsNumber()
-  readonly low?: number;
+  low: number;
 
   @ApiProperty({ description: "Opening price of the stock" })
   @IsOptional()
   @IsNumber()
-  readonly open?: number;
+  open: number;
 
   @ApiProperty({ description: "Stock ticker symbol" })
   @IsOptional()
   @IsString()
-  readonly ticker?: string;
+  ticker: string;
 
   @ApiProperty({ description: "Volume of the stock traded" })
   @IsOptional()
   @IsNumber()
-  readonly vol?: number;
+  vol: number;
 }

@@ -13,9 +13,9 @@ import { GetStockHistoryDto } from "./dto/get-stock-history.dto";
 @Injectable()
 export class StocksService {
   constructor(
+    @InjectModel(Stock.name) private stockModel: Model<Stock>,
     @Inject("WEBSOCKET_SERVICE")
     private readonly websocketClient: ClientKafka,
-    @InjectModel(Stock.name) private readonly stockModel: Model<Stock>,
     private readonly httpService: HttpService
   ) {}
 
@@ -109,29 +109,62 @@ export class StocksService {
   }
 
   // Create a new stock data
-  async create(createStockDto: CreateStockDto) {
-    const newStock = new this.stockModel(createStockDto);
-    return newStock.save();
+  async createStock(createStockDto: CreateStockDto) {
+    try {
+      const result = await this.stockModel.create(createStockDto);
+      if (!result) {
+        throw new NotFoundException("Error creating stock data");
+      }
+
+      return {
+        success: true,
+        message: "Create new stock successfully",
+        results: result
+      };
+    } catch (error) {
+      console.error("Error creating stock data:", error.message);
+      throw error;
+    }
   }
 
   // Update a stock data
-  async update(_id: string, updateStockDto: UpdateStockDto) {
-    const stock = await this.stockModel.updateOne(
-      { _id: _id },
-      updateStockDto,
-      { new: true }
-    );
-    if (!stock) {
-      throw new NotFoundException(`Stock with ID ${_id} not found`);
+  async updateStock(_id: string, updateStockDto: UpdateStockDto) {
+    try {
+      const result = await this.stockModel.updateOne(
+        { _id: _id },
+        { ...updateStockDto }
+      );
+      if (!result) {
+        throw new NotFoundException(`Stock with ID ${_id} not found`);
+      }
+
+      return {
+        success: true,
+        message: "Update stock successfully",
+        results: result
+      };
+    } catch (error) {
+      console.error("Error updating stock data:", error.message);
+      throw error;
     }
-    return stock;
   }
 
   // Delete a stock data
-  async delete(_id: string): Promise<void> {
-    const result = await this.stockModel.deleteOne({ _id: _id });
-    if (!result) {
-      throw new NotFoundException(`Stock with ID ${_id} not found`);
+  async deleteStock(_id: string) {
+    try {
+      const result = await this.stockModel.deleteOne({ _id: _id });
+      if (!result) {
+        throw new NotFoundException(`Stock with ID ${_id} not found`);
+      }
+
+      return {
+        success: true,
+        message: "Delete stock successfully",
+        results: result
+      };
+    } catch (error) {
+      console.error("Error deleting stock data:", error.message);
+      throw error;
     }
   }
 }

@@ -4,29 +4,29 @@ import { IsString, IsNumber } from "class-validator";
 export class CreateStockDto {
   @ApiProperty({ description: "Closing price of the stock" })
   @IsNumber()
-  readonly close: number;
+  close: number;
 
   @ApiProperty({
     description: "Highest price of the stock in the trading session"
   })
   @IsNumber()
-  readonly high: number;
+  high: number;
 
   @ApiProperty({
     description: "Lowest price of the stock in the trading session"
   })
   @IsNumber()
-  readonly low: number;
+  low: number;
 
   @ApiProperty({ description: "Opening price of the stock" })
   @IsNumber()
-  readonly open: number;
+  open: number;
 
   @ApiProperty({ description: "Stock ticker symbol" })
   @IsString()
-  readonly ticker: string;
+  ticker: string;
 
   @ApiProperty({ description: "Volume of the stock traded" })
   @IsNumber()
-  readonly vol: number;
+  vol: number;
 }
